@@ -5,7 +5,12 @@
   "inicio": null,
   "fim": "2026-07-10",
   "interrompido": null,
-  "tags": ["distopia", "ficção científica", "literatura inglesa", "política"]
+  "tags": [
+    "distopia",
+    "ficção científica",
+    "literatura inglesa",
+    "política"
+  ]
   },
   {
   "nome": "Duna",
@@ -13,7 +18,11 @@
   "inicio": null,
   "fim": "2026-07-10",
   "interrompido": null,
-  "tags": ["literatura", "ficção científica", "política"]
+  "tags": [
+    "literatura",
+    "ficção científica",
+    "política"
+  ]
   },
   {
   "nome": "O Alquimista",
@@ -21,7 +30,11 @@
   "inicio": null,
   "fim": "2026-07-10",
   "interrompido": null,
-  "tags": ["literatura", "filosofia", "espiritualidade"]
+  "tags": [
+    "literatura",
+    "filosofia",
+    "espiritualidade"
+  ]
   },
   {
   "nome": "A Bruxa de Portobello",
@@ -29,7 +42,10 @@
   "inicio": null,
   "fim": "2026-07-10",
   "interrompido": null,
-  "tags": ["literatura", "espiritualidade"]
+  "tags": [
+    "literatura",
+    "espiritualidade"
+  ]
   },
   {
   "nome": "Sobre a Brevidade da Vida",
@@ -37,6 +53,10 @@
   "inicio": null,
   "fim": "2026-07-10",
   "interrompido": null,
-  "tags": ["estoicismo", "filosofia", "clássico"]
+  "tags": [
+    "estoicismo",
+    "filosofia",
+    "clássico"
+  ]
   }
 ]

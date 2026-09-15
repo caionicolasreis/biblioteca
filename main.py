@@ -16,8 +16,10 @@ def carregar(arquivo = biblioteca):
 
     Self-contained com error handling e sys.exit. Termina o programa em qualquer erro.
 
-    Args: arquivo
-        default: biblioteca"""
+    Args:
+        arquivo - path para o arquivo.
+            Default: biblioteca.
+        """
     try:
         with open(arquivo, "r") as f:
             return json.load(f)
@@ -28,7 +30,7 @@ def carregar(arquivo = biblioteca):
     except Exception as e:
         sys.exit(f"Algum erro ocorreu durante o carregamento do arquivo:\n\n{e}")
 
-data = carregar()
+dados = carregar()
 print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.\n")
 
 
@@ -36,9 +38,30 @@ print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.\n")
 # Criando uma exibição dos livros disponíveis na biblioteca. Quando os dados crescerem, isso mudará.
 livros = []
 
-for i in data:
+for i in dados:
     livros.append(f"{i["autor"]} - {i["nome"]}")
 
 print(f"Os livros atualmente disponíveis são:")
 for livro in livros:
     print(f"- {livro}")
+
+
+
+# Função para inserir novos dados em data.json
+def inserir_livro():
+    lido = input("Esse livro já foi lido, mesmo que parcialmente(s/n)?\n")
+    nome = input("Insira o nome do livro: ")
+    autor = input("Insira o autor do livro: ")
+    if lido == "s":
+        inicio = input("Insira quando iniciou a leitura do livro: ") # não deveria aceitar inputs vazios
+        fim = input("Insira quando finalizou a leitura do livro. Enter para vazio: ")
+        interrompido = input("Insira quando interrompeu a leitura livro. Enter para vazio: ")
+    else: # inclui inputs incorretos
+        inicio = fim = interrompido = None
+    insercao = {"nome": nome, "autor": autor, "inicio": inicio, "fim": fim, "interrompido": interrompido}
+    confirmacao_insercao = input(f"{insercao}\n\nEsses dados inseridos estão corretos(s/n)?\n")
+    if confirmacao_insercao == "s":
+        dados.append(insercao)
+        print("Dados adicionados com sucesso. Salve as mudanças com FUNCTION para as tornar permanentes.")
+    else: # inclui inputs incorretos
+        print("Inserção cancelada.") # posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
