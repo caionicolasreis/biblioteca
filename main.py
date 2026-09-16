@@ -52,16 +52,31 @@ def inserir_livro():
     lido = input("Esse livro já foi lido, mesmo que parcialmente(s/n)?\n")
     nome = input("Insira o nome do livro: ")
     autor = input("Insira o autor do livro: ")
-    if lido == "s":
-        inicio = input("Insira quando iniciou a leitura do livro: ") # não deveria aceitar inputs vazios
-        fim = input("Insira quando finalizou a leitura do livro. Enter para vazio: ")
-        interrompido = input("Insira quando interrompeu a leitura livro. Enter para vazio: ")
+    if lido == "s": # falta incluir "y"
+        inicio = input("Insira quando iniciou a leitura do livro (Enter para vazio): ")        # não deveria aceitar inputs que não sejam datas (YYYY-MM-DD)
+        fim = input("Insira quando finalizou a leitura do livro (Enter para vazio): ")         # não deveria aceitar inputs que não sejam datas (YYYY-MM-DD)
+        interrompido = input("Insira quando interrompeu a leitura livro (Enter para vazio): ") # não deveria aceitar inputs que não sejam datas (YYYY-MM-DD)
     else: # inclui inputs incorretos
         inicio = fim = interrompido = None
-    insercao = {"nome": nome, "autor": autor, "inicio": inicio, "fim": fim, "interrompido": interrompido}
+    # Inserção de tags individuais sequencialmente - procurar uma forma de inserir diversas
+    tags = []
+    print("Insira uma tag por vez")
+    while True:
+        tag = []
+        tag = input("Insira uma tag (Enter para sair): ")
+        if tag == "": # não entendi por que utilizar 'None' não funcionou aqui - pesquisar
+            break
+        tags.append(tag)
+    insercao = {"nome": nome, "autor": autor, "inicio": inicio, "fim": fim, "interrompido": interrompido, "tags": tags}
     confirmacao_insercao = input(f"{insercao}\n\nEsses dados inseridos estão corretos(s/n)?\n")
-    if confirmacao_insercao == "s":
+    if confirmacao_insercao == "s": # falta incluir "y"
         dados.append(insercao)
-        print("Dados adicionados com sucesso. Salve as mudanças com FUNCTION para as tornar permanentes.")
+        print("Dados adicionados com sucesso. Salve as mudanças com a função ""Salvar"" para as tornar permanentes.")
     else: # inclui inputs incorretos
         print("Inserção cancelada.") # posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
+
+
+
+# Placeholder de função de salvamento
+def salvar():
+    print("Função ainda não funcional. Reclame com o dev.")
