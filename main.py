@@ -15,11 +15,7 @@ def carregar(arquivo = biblioteca):
     """Carrega o arquivo do biblioteca do Mago
 
     Self-contained com error handling e sys.exit. Termina o programa em qualquer erro.
-
-    Args:
-        arquivo - path para o arquivo.
-            Default: biblioteca.
-        """
+    """
     try:
         with open(arquivo, "r") as f:
             return json.load(f)
@@ -72,7 +68,7 @@ def inserir_livro():
     if confirmacao_insercao == "s": # falta incluir "y"
         dados.append(insercao)
         print("Dados adicionados com sucesso. Salve as mudanças com a função ""Salvar"" para as tornar permanentes.")
-    else: # inclui inputs incorretos
+    else: # inclui inputs incorretos - encontrar forma de corrigir isso
         print("Inserção cancelada.") # posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
 
 
