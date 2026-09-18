@@ -2,6 +2,7 @@
 
 import json
 import sys
+from datetime import date
 from pathlib import Path
 
 print("Bem vindo a biblioteca do Mago, o Inefável.\n")
@@ -48,24 +49,111 @@ def inserir_livro():
     lido = input("Esse livro já foi lido, mesmo que parcialmente(s/n)?\n")
     nome = input("Insira o nome do livro: ")
     autor = input("Insira o autor do livro: ")
-    if lido == "s": # falta incluir "y"
-        inicio = input("Insira quando iniciou a leitura do livro (Enter para vazio): ")        # não deveria aceitar inputs que não sejam datas (YYYY-MM-DD)
-        fim = input("Insira quando finalizou a leitura do livro (Enter para vazio): ")         # não deveria aceitar inputs que não sejam datas (YYYY-MM-DD)
-        interrompido = input("Insira quando interrompeu a leitura livro (Enter para vazio): ") # não deveria aceitar inputs que não sejam datas (YYYY-MM-DD)
+    if lido in ("s", "y"): # or não é aplicável - criaria um truthy
+        print("Cadastre as datas de leitura em formato ISO (AAAA-MM-DD). Pressione Enter para pular qualquer etapa.")
+        # posso transformar todos esses 3 blocos em uma função onde defino a variável depois de receber o return?
+        data_inicio = input("Insira quando iniciou a leitura do livro: ")
+        while True:
+            if data_inicio != "":
+                try: # testando data type
+                    inicio = date.fromisoformat(data_inicio)
+                    break
+                except ValueError:
+                    data_inicio = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
+            else:
+                inicio = None
+                break
+
+        data_fim = input("Insira quando finalizou a leitura do livro: ")
+        while True:
+            if data_fim != "":
+                try: # testando data type
+                    fim = date.fromisoformat(data_fim)
+                    break
+                except ValueError:
+                    data_fim = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
+            else:
+                fim = None
+                break
+
+        data_interrompido = input("Insira quando interrompeu a leitura livro: ")
+        while True:
+            if data_interrompido != "":
+                try: # testando data type
+                    interrompido = date.fromisoformat(data_interrompido)
+                    break
+                except ValueError:
+                    data_interrompido = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
+            else:
+                interrompido = None
+                break
     else: # inclui inputs incorretos
         inicio = fim = interrompido = None
     # Inserção de tags individuais sequencialmente - procurar uma forma de inserir diversas
     tags = []
     print("Insira uma tag por vez")
     while True:
-        tag = []
         tag = input("Insira uma tag (Enter para sair): ")
         if tag == "": # não entendi por que utilizar 'None' não funcionou aqui - pesquisar
             break
         tags.append(tag)
-    insercao = {"nome": nome, "autor": autor, "inicio": inicio, "fim": fim, "interrompido": interrompido, "tags": tags}
+
+    # Tenho CERTEZA que deve existir alguma forma melhor de escrever isso. E "interrompido" VAI me causar problemas ainda ...
+    # Talvez seja possível evitar completamente de utilizar if, elif e else?
+    # Posso tentar adicionar um "retorno" (a leitura) para evitar problemas com o "interrompido".
+    if inicio and fim and interrompido:
+        insercao = {
+            "nome": nome,
+            "autor": autor,
+            "inicio": inicio.isoformat(),
+            "fim": fim.isoformat(),
+            "interrompido": interrompido.isoformat(),
+            "tags": tags
+        }
+    elif inicio and fim:
+        insercao = {
+            "nome": nome,
+            "autor": autor,
+            "inicio": inicio.isoformat(),
+            "fim": fim.isoformat(),
+            "interrompido": interrompido,
+            "tags": tags
+        }
+    elif inicio and interrompido:
+        insercao = {
+            "nome": nome,
+            "autor": autor,
+            "inicio": inicio.isoformat(),
+            "fim": fim,
+            "interrompido": interrompido.isoformat(),
+            "tags": tags
+        }
+    elif inicio:
+        insercao = {
+            "nome": nome,
+            "autor": autor,
+            "inicio": inicio.isoformat(),
+            "fim": fim,
+            "interrompido": interrompido,
+            "tags": tags
+        }
+    elif fim:
+        # A princípio não deveria existir essa possibilidade, mas vão existir livros inseridos retroativamente
+        # que não possuem uma data de início conhecida ou precisa.
+        insercao = {
+            "nome": nome,
+            "autor": autor,
+            "inicio": inicio,
+            "fim": fim.isoformat(),
+            "interrompido": interrompido,
+            "tags": tags
+        }
+    else:
+        print("Combinação de datas impossível. Operação cancelada.") # se eu conseguir transformar os 3 blocos de while True
+                                                                     # em funções, vou poder adicionar um retry facilmente aqui?
+
     confirmacao_insercao = input(f"{insercao}\n\nEsses dados inseridos estão corretos(s/n)?\n")
-    if confirmacao_insercao == "s": # falta incluir "y"
+    if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
         dados.append(insercao)
         print("Dados adicionados com sucesso. Salve as mudanças com a função ""Salvar"" para as tornar permanentes.")
     else: # inclui inputs incorretos - encontrar forma de corrigir isso
