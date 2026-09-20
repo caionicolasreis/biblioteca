@@ -47,9 +47,9 @@ for livro in livros:
 # Função para inserir novos dados em data.json
 def inserir_livro():
     lido = input("Esse livro já foi lido, mesmo que parcialmente(s/n)?\n")
-    nome = input("Insira o nome do livro: ")
-    autor = input("Insira o autor do livro: ")
     if lido in ("s", "y"): # or não é aplicável - criaria um truthy
+        nome = input("Insira o nome do livro: ")
+        autor = input("Insira o autor do livro: ")
         print("Cadastre as datas de leitura em formato ISO (AAAA-MM-DD). Pressione Enter para pular qualquer etapa.")
         # posso transformar todos esses 3 blocos em uma função onde defino a variável depois de receber o return?
         data_inicio = input("Insira quando iniciou a leitura do livro: ")
@@ -87,8 +87,13 @@ def inserir_livro():
             else:
                 interrompido = None
                 break
-    else: # inclui inputs incorretos
+    elif lido == "n":
+        nome = input("Insira o nome do livro: ")
+        autor = input("Insira o autor do livro: ")
         inicio = fim = interrompido = None
+    else: # posso colocar esse bloco condicional em um loop para reiniciar no else
+        print("Resposta inválida.")
+        return
     # Inserção de tags individuais sequencialmente - procurar uma forma de inserir diversas
     tags = []
     print("Insira uma tag por vez")
@@ -148,7 +153,7 @@ def inserir_livro():
             "interrompido": interrompido,
             "tags": tags
         }
-    else:
+    else: # problema: caso o usuário pule as 3 inserções de datas o else dispara mesmo sendo aceitável. Corrigir.
         print("Combinação de datas impossível. Operação cancelada.") # se eu conseguir transformar os 3 blocos de while True
                                                                      # em funções, vou poder adicionar um retry facilmente aqui?
 
@@ -156,8 +161,12 @@ def inserir_livro():
     if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
         dados.append(insercao)
         print("Dados adicionados com sucesso. Salve as mudanças com a função ""Salvar"" para as tornar permanentes.")
-    else: # inclui inputs incorretos - encontrar forma de corrigir isso
-        print("Inserção cancelada.") # posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
+    elif confirmacao_insercao == "n":
+        print("Inserção cancelada.")  # posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
+        return
+    else: # posso colocar esse bloco condicional em um loop para reiniciar no else
+        print("Resposta inválida.")
+        return
 
 
 
