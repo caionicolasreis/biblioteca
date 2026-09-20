@@ -46,54 +46,55 @@ for livro in livros:
 
 # Função para inserir novos dados em data.json
 def inserir_livro():
-    lido = input("Esse livro já foi lido, mesmo que parcialmente(s/n)?\n")
-    if lido in ("s", "y"): # or não é aplicável - criaria um truthy
+    while True:
+        lido = input("Esse livro já foi lido, mesmo que parcialmente(s/n)?: ")
         nome = input("Insira o nome do livro: ")
         autor = input("Insira o autor do livro: ")
-        print("Cadastre as datas de leitura em formato ISO (AAAA-MM-DD). Pressione Enter para pular qualquer etapa.")
-        # posso transformar todos esses 3 blocos em uma função onde defino a variável depois de receber o return?
-        data_inicio = input("Insira quando iniciou a leitura do livro: ")
-        while True:
-            if data_inicio != "":
-                try: # testando data type
-                    inicio = date.fromisoformat(data_inicio)
+        if lido in ("s", "y"): # or não é aplicável - criaria um truthy
+            print("Cadastre as datas de leitura em formato ISO (AAAA-MM-DD). Pressione Enter para pular qualquer etapa.")
+            # posso transformar todos esses 3 blocos em uma função onde defino a variável depois de receber o return?
+            data_inicio = input("Insira quando iniciou a leitura do livro: ")
+            while True:
+                if data_inicio != "":
+                    try: # testando data type
+                        inicio = date.fromisoformat(data_inicio)
+                        break
+                    except ValueError:
+                        data_inicio = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
+                else:
+                    inicio = None
                     break
-                except ValueError:
-                    data_inicio = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
-            else:
-                inicio = None
-                break
 
-        data_fim = input("Insira quando finalizou a leitura do livro: ")
-        while True:
-            if data_fim != "":
-                try: # testando data type
-                    fim = date.fromisoformat(data_fim)
+            data_fim = input("Insira quando finalizou a leitura do livro: ")
+            while True:
+                if data_fim != "":
+                    try: # testando data type
+                        fim = date.fromisoformat(data_fim)
+                        break
+                    except ValueError:
+                        data_fim = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
+                else:
+                    fim = None
                     break
-                except ValueError:
-                    data_fim = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
-            else:
-                fim = None
-                break
 
-        data_interrompido = input("Insira quando interrompeu a leitura livro: ")
-        while True:
-            if data_interrompido != "":
-                try: # testando data type
-                    interrompido = date.fromisoformat(data_interrompido)
+            data_interrompido = input("Insira quando interrompeu a leitura livro: ")
+            while True:
+                if data_interrompido != "":
+                    try: # testando data type
+                        interrompido = date.fromisoformat(data_interrompido)
+                        break
+                    except ValueError:
+                        data_interrompido = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
+                else:
+                    interrompido = None
                     break
-                except ValueError:
-                    data_interrompido = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
-            else:
-                interrompido = None
-                break
-    elif lido == "n":
-        nome = input("Insira o nome do livro: ")
-        autor = input("Insira o autor do livro: ")
-        inicio = fim = interrompido = None
-    else: # posso colocar esse bloco condicional em um loop para reiniciar no else
-        print("Resposta inválida.")
-        return
+            break
+        elif lido == "n":
+            inicio = fim = interrompido = None
+            break
+        else:
+            print("Resposta inválida.")
+
     # Inserção de tags individuais sequencialmente - procurar uma forma de inserir diversas
     tags = []
     print("Insira uma tag por vez")
@@ -156,17 +157,17 @@ def inserir_livro():
     else: # problema: caso o usuário pule as 3 inserções de datas o else dispara mesmo sendo aceitável. Corrigir.
         print("Combinação de datas impossível. Operação cancelada.") # se eu conseguir transformar os 3 blocos de while True
                                                                      # em funções, vou poder adicionar um retry facilmente aqui?
-
-    confirmacao_insercao = input(f"{insercao}\n\nEsses dados inseridos estão corretos(s/n)?\n")
-    if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
-        dados.append(insercao)
-        print("Dados adicionados com sucesso. Salve as mudanças com a função ""Salvar"" para as tornar permanentes.")
-    elif confirmacao_insercao == "n":
-        print("Inserção cancelada.")  # posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
-        return
-    else: # posso colocar esse bloco condicional em um loop para reiniciar no else
-        print("Resposta inválida.")
-        return
+    while True:
+        confirmacao_insercao = input(f"Os dados que serão cadastrados são: \n\n {insercao} \n\n Esses dados inseridos estão corretos(s/n)?: ")
+        if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
+            dados.append(insercao)
+            print("Dados adicionados com sucesso. Salve as mudanças com a função ""salvar()"" para as tornar permanentes.")
+            break
+        elif confirmacao_insercao == "n":
+            print("Inserção cancelada.")  # posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
+            break
+        else:
+            print("Resposta inválida.")
 
 
 
