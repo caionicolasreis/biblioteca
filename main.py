@@ -133,7 +133,7 @@ def inserir_livro():
             "interrompido": interrompido,
             "tags": tags
         }
-    elif inicio and fim and interrompido == "":
+    elif inicio == "" and fim == "" and interrompido == "":
         insercao = {
             "nome": nome,
             "autor": autor,
@@ -144,7 +144,8 @@ def inserir_livro():
         }
     else:
         print("Combinação de datas impossível. Operação cancelada.") # se eu conseguir transformar os 3 blocos de while True
-                                                                     # em funções, vou poder adicionar um retry facilmente aqui?
+        return                                                       # em funções, vou poder adicionar um retry facilmente aqui?
+
     while True:
         confirmacao_insercao = input(f"Os dados que serão cadastrados são: \n\n {insercao} \n\n Esses dados inseridos estão corretos(s/n)?: ")
         if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
