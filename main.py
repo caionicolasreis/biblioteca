@@ -48,48 +48,27 @@ for livro in livros:
 def inserir_livro():
     while True:
         lido = input("Esse livro já foi lido, mesmo que parcialmente(s/n)?: ")
-        nome = input("Insira o nome do livro: ")
-        autor = input("Insira o autor do livro: ")
         if lido in ("s", "y"): # or não é aplicável - criaria um truthy
+            nome = input("Insira o nome do livro: ")
+            autor = input("Insira o autor do livro: ")
             print("Cadastre as datas de leitura em formato ISO (AAAA-MM-DD). Pressione Enter para pular qualquer etapa.")
-            # posso transformar todos esses 3 blocos em uma função onde defino a variável depois de receber o return?
-            data_inicio = input("Insira quando iniciou a leitura do livro: ")
-            while True:
-                if data_inicio != "":
-                    try: # testando data type
-                        inicio = date.fromisoformat(data_inicio)
-                        break
-                    except ValueError:
-                        data_inicio = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
-                else:
-                    inicio = None
-                    break
 
-            data_fim = input("Insira quando finalizou a leitura do livro: ")
-            while True:
-                if data_fim != "":
-                    try: # testando data type
-                        fim = date.fromisoformat(data_fim)
-                        break
+            def inserir_data(data):
+                while True:
+                    if data == "":
+                        return None
+                    try:
+                        return date.fromisoformat(data)
                     except ValueError:
-                        data_fim = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
-                else:
-                    fim = None
-                    break
+                        data = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
 
-            data_interrompido = input("Insira quando interrompeu a leitura livro: ")
-            while True:
-                if data_interrompido != "":
-                    try: # testando data type
-                        interrompido = date.fromisoformat(data_interrompido)
-                        break
-                    except ValueError:
-                        data_interrompido = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
-                else:
-                    interrompido = None
-                    break
+            inicio = inserir_data(input("Insira quando iniciou a leitura do livro: "))
+            fim = inserir_data(input("Insira quando finalizou a leitura do livro: "))
+            interrompido = inserir_data(input("Insira quando interrompeu a leitura do livro: "))
             break
         elif lido == "n":
+            nome = input("Insira o nome do livro: ")
+            autor = input("Insira o autor do livro: ")
             inicio = fim = interrompido = None
             break
         else:
