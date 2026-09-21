@@ -154,7 +154,16 @@ def inserir_livro():
             "interrompido": interrompido,
             "tags": tags
         }
-    else: # problema: caso o usuário pule as 3 inserções de datas o else dispara mesmo sendo aceitável. Corrigir.
+    elif inicio and fim and interrompido == "":
+        insercao = {
+            "nome": nome,
+            "autor": autor,
+            "inicio": inicio,
+            "fim": fim,
+            "interrompido": interrompido,
+            "tags": tags
+        }
+    else:
         print("Combinação de datas impossível. Operação cancelada.") # se eu conseguir transformar os 3 blocos de while True
                                                                      # em funções, vou poder adicionar um retry facilmente aqui?
     while True:
