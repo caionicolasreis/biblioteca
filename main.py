@@ -83,69 +83,23 @@ def inserir_livro():
             break
         tags.append(tag)
 
-    # Tenho CERTEZA que deve existir alguma forma melhor de escrever isso. E "interrompido" VAI me causar problemas ainda...
-    # Talvez seja possível evitar completamente de utilizar if, elif e else?
-    # Posso tentar adicionar um "retorno" (a leitura) para evitar problemas com o "interrompido".
-    if inicio and fim and interrompido:
-        insercao = {
-            "nome": nome,
-            "autor": autor,
-            "inicio": inicio.isoformat(),
-            "fim": fim.isoformat(),
-            "interrompido": interrompido.isoformat(),
-            "tags": tags
-        }
-    elif inicio and fim:
-        insercao = {
-            "nome": nome,
-            "autor": autor,
-            "inicio": inicio.isoformat(),
-            "fim": fim.isoformat(),
-            "interrompido": interrompido,
-            "tags": tags
-        }
-    elif inicio and interrompido:
-        insercao = {
-            "nome": nome,
-            "autor": autor,
-            "inicio": inicio.isoformat(),
-            "fim": fim,
-            "interrompido": interrompido.isoformat(),
-            "tags": tags
-        }
-    elif inicio:
-        insercao = {
-            "nome": nome,
-            "autor": autor,
-            "inicio": inicio.isoformat(),
-            "fim": fim,
-            "interrompido": interrompido,
-            "tags": tags
-        }
-    elif fim:
-        # A princípio não deveria existir essa possibilidade, mas vão existir livros inseridos retroativamente
-        # que não possuem uma data de início conhecida ou precisa.
-        insercao = {
-            "nome": nome,
-            "autor": autor,
-            "inicio": inicio,
-            "fim": fim.isoformat(),
-            "interrompido": interrompido,
-            "tags": tags
-        }
-    elif inicio == "" and fim == "" and interrompido == "":
-        insercao = {
-            "nome": nome,
-            "autor": autor,
-            "inicio": inicio,
-            "fim": fim,
-            "interrompido": interrompido,
-            "tags": tags
-        }
-    else:
-        print("Combinação de datas impossível. Operação cancelada.")
-        return
+    # Preparando dados para serem inseridos no JSON
+    def para_json(valor):
+        if valor:
+            return valor.isoformat()
+        else:
+            return valor
 
+    insercao = {
+        "nome": nome,
+        "autor": autor,
+        "inicio": para_json(inicio),
+        "fim": para_json(fim),
+        "interrompido": para_json(interrompido),
+        "tags": tags
+    }
+
+    # Confirmando se os dados estão corretos diretamente com o usuário e inserido caso estejam
     while True:
         confirmacao_insercao = input(f"Os dados que serão cadastrados são: \n\n {insercao} \n\n Esses dados inseridos estão corretos(s/n)?: ")
         if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
