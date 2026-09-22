@@ -13,10 +13,8 @@ print("Bem vindo a biblioteca do Mago, o Inefável.\n")
 biblioteca = Path('data.json')
 
 def carregar(arquivo = biblioteca):
-    """Carrega o arquivo do biblioteca do Mago
-
-    Self-contained com error handling e sys.exit. Termina o programa em qualquer erro.
-    """
+    """Carrega o arquivo da biblioteca do Mago
+    Self-contained com error handling e sys.exit. Termina o programa em qualquer erro."""
     try:
         with open(arquivo, "r") as f:
             return json.load(f)
@@ -53,7 +51,9 @@ def inserir_livro():
             autor = input("Insira o autor do livro: ")
             print("Cadastre as datas de leitura em formato ISO (AAAA-MM-DD). Pressione Enter para pular qualquer etapa.")
 
-            def inserir_data(data):
+            def inserir_data(data): # função que permitirá cálculos de datas antes do salvamento
+                """Converte uma string de data para formato ISO (AAAA-MM-DD).
+                Permite novas tentativas caso ocorra algum ValueError."""
                 while True:
                     if data == "":
                         return None
@@ -83,7 +83,7 @@ def inserir_livro():
             break
         tags.append(tag)
 
-    # Tenho CERTEZA que deve existir alguma forma melhor de escrever isso. E "interrompido" VAI me causar problemas ainda ...
+    # Tenho CERTEZA que deve existir alguma forma melhor de escrever isso. E "interrompido" VAI me causar problemas ainda...
     # Talvez seja possível evitar completamente de utilizar if, elif e else?
     # Posso tentar adicionar um "retorno" (a leitura) para evitar problemas com o "interrompido".
     if inicio and fim and interrompido:
@@ -143,8 +143,8 @@ def inserir_livro():
             "tags": tags
         }
     else:
-        print("Combinação de datas impossível. Operação cancelada.") # se eu conseguir transformar os 3 blocos de while True
-        return                                                       # em funções, vou poder adicionar um retry facilmente aqui?
+        print("Combinação de datas impossível. Operação cancelada.")
+        return
 
     while True:
         confirmacao_insercao = input(f"Os dados que serão cadastrados são: \n\n {insercao} \n\n Esses dados inseridos estão corretos(s/n)?: ")
