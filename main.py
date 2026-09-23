@@ -51,7 +51,7 @@ def inserir_livro():
             autor = input("Insira o autor do livro: ")
             print("Cadastre as datas de leitura em formato ISO (AAAA-MM-DD). Pressione Enter para pular qualquer etapa.")
 
-            def inserir_data(data): # função que permitirá cálculos de datas antes do salvamento
+            def inserir_data(data): # Função que permitirá cálculos de datas antes do salvamento
                 """Converte uma string de data para formato ISO (AAAA-MM-DD).
                 Permite novas tentativas caso ocorra algum ValueError."""
                 while True:
@@ -72,7 +72,7 @@ def inserir_livro():
             autor = input("Insira o autor do livro: ")
             inicio = fim = interrompido = retornado = None
             break
-        else:
+        else: # Não vejo muita necessidade desse else existir. Mas ele não fere o código por agora.
             print("Resposta inválida.")
 
     # Inserção de tags individuais sequencialmente - procurar uma forma de inserir diversas
@@ -80,12 +80,16 @@ def inserir_livro():
     print("Insira uma tag por vez")
     while True:
         tag = input("Insira uma tag (Enter para sair): ")
-        if tag == "": # não entendi por que utilizar 'None' não funcionou aqui - pesquisar
+        if tag == "": # Não entendi por que utilizar 'None' não funcionou aqui - pesquisar
             break
         tags.append(tag)
 
     # Preparando dados para serem inseridos no JSON
     def para_json(valor):
+        """Tenta converter algum valor para uma data de formato ISO (AAAA-MM-DD).
+        Retorna Null caso nada seja inserido.
+
+        Quebra em qualquer entrada que não seja possível converter para o formato ISO."""
         if valor:
             return valor.isoformat()
         else:
@@ -109,7 +113,7 @@ def inserir_livro():
             print("Dados adicionados com sucesso. Salve as mudanças com a função ""salvar()"" para as tornar permanentes.")
             break
         elif confirmacao_insercao == "n":
-            print("Inserção cancelada.")  # posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
+            print("Inserção cancelada.")  # Posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
             break
         else:
             print("Resposta inválida.")
