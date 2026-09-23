@@ -65,11 +65,12 @@ def inserir_livro():
             inicio = inserir_data(input("Insira quando iniciou a leitura do livro: "))
             fim = inserir_data(input("Insira quando finalizou a leitura do livro: "))
             interrompido = inserir_data(input("Insira quando interrompeu a leitura do livro: "))
+            retornado = inserir_data(input("Insira quando retornou a leitura do livro: "))
             break
         elif lido == "n":
             nome = input("Insira o nome do livro: ")
             autor = input("Insira o autor do livro: ")
-            inicio = fim = interrompido = None
+            inicio = fim = interrompido = retornado = None
             break
         else:
             print("Resposta inválida.")
@@ -96,6 +97,7 @@ def inserir_livro():
         "inicio": para_json(inicio),
         "fim": para_json(fim),
         "interrompido": para_json(interrompido),
+        "retornado": para_json(retornado),
         "tags": tags
     }
 
