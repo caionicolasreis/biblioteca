@@ -9,7 +9,7 @@ print("Bem vindo a biblioteca do Mago, o Inefável.\n")
 
 
 
-# Carregando os dados JSON.
+# Carregando os dados JSON
 biblioteca = Path('data.json')
 
 def carregar(arquivo = biblioteca):
@@ -18,12 +18,12 @@ def carregar(arquivo = biblioteca):
     try:
         with open(arquivo, "r") as f:
             return json.load(f)
-    except FileNotFoundError as e:
-        sys.exit(f"Arquivo não encontrado: {e.filename}")
+    except (OSError) as e:
+        sys.exit(f"Ocorreu um erro durante o carregamento do arquivo: {biblioteca.resolve()}:\n\n{e}")
     except json.JSONDecodeError as e:
         sys.exit(f"{biblioteca.resolve()} corrompido na linha {e.lineno}: {e.msg}")
     except Exception as e:
-        sys.exit(f"Algum erro ocorreu durante o carregamento do arquivo:\n\n{e}")
+        sys.exit(f"Ocorreu um erro:\n\n{e}")
 
 dados = carregar()
 print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.\n")
@@ -107,10 +107,10 @@ def inserir_livro():
 
     # Confirmando se os dados estão corretos diretamente com o usuário e inserido caso estejam
     while True:
-        confirmacao_insercao = input(f"Os dados que serão cadastrados são: \n\n {insercao} \n\n Esses dados inseridos estão corretos(s/n)?: ")
+        confirmacao_insercao = input(f"Os dados que serão cadastrados são: \n\n {insercao} \n\n\n\n Esses dados inseridos estão corretos(s/n)?: ")
         if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
             dados.append(insercao)
-            print("Dados adicionados com sucesso. Salve as mudanças com a função ""salvar()"" para as tornar permanentes.")
+            print("Dados adicionados com sucesso. Utilize a função ""salvar()"" para as tornar permanentes.")
             break
         elif confirmacao_insercao == "n":
             print("Inserção cancelada.")  # Posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
@@ -120,6 +120,20 @@ def inserir_livro():
 
 
 
-# Placeholder de função de salvamento
-def salvar():
-    print("Função ainda não funcional. Reclame com o dev.")
+# Placeholder da função de remoção
+def deletar():
+    print("Função em desenvolvimento. Reclame com o Dev.")
+
+
+
+# Salvando dados no JSON da biblioteca
+# Pesquisando sobre, descobri que utilizar um arquivo temporário é interessante para proteger o arquivo original de erros.
+def salvar(arquivo = biblioteca):
+    try:
+        with open(arquivo, "w") as f:
+            json.dump(dados, f, ensure_ascii=False, indent=2)
+            print(f"Inserções salvas com sucesso em: {biblioteca.resolve()}")
+    except (OSError, TypeError) as e:
+        print(f"Ocorreu um erro durante o salvamento no arquivo: {biblioteca.resolve()}:\n\n{e}")
+    except Exception as e:
+        print(f"Ocorreu um erro:\n\n{e}")

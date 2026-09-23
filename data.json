@@ -1,67 +1,80 @@
 [
   {
-  "nome": "1984",
-  "autor": "George Orwell",
-  "inicio": null,
-  "fim": "2026-07-10",
-  "interrompido": null,
-  "retornado": null,
-  "tags": [
-    "distopia",
-    "ficção científica",
-    "literatura inglesa",
-    "política"
-  ]
+    "nome": "1984",
+    "autor": "George Orwell",
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null,
+    "tags": [
+      "distopia",
+      "ficção científica",
+      "literatura inglesa",
+      "política"
+    ]
   },
   {
-  "nome": "Duna",
-  "autor": "Frank Herbert",
-  "inicio": null,
-  "fim": "2026-07-10",
-  "interrompido": null,
-  "retornado": null,
-  "tags": [
-    "literatura",
-    "ficção científica",
-    "política"
-  ]
+    "nome": "Duna",
+    "autor": "Frank Herbert",
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null,
+    "tags": [
+      "literatura",
+      "ficção científica",
+      "política"
+    ]
   },
   {
-  "nome": "O Alquimista",
-  "autor": "Paulo Coelho",
-  "inicio": null,
-  "fim": "2026-07-10",
-  "interrompido": null,
-  "retornado": null,
-  "tags": [
-    "literatura",
-    "filosofia",
-    "espiritualidade"
-  ]
+    "nome": "O Alquimista",
+    "autor": "Paulo Coelho",
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null,
+    "tags": [
+      "literatura",
+      "filosofia",
+      "espiritualidade"
+    ]
   },
   {
-  "nome": "A Bruxa de Portobello",
-  "autor": "Paulo Coelho",
-  "inicio": null,
-  "fim": "2026-07-10",
-  "interrompido": null,
-  "retornado": null,
-  "tags": [
-    "literatura",
-    "espiritualidade"
-  ]
+    "nome": "A Bruxa de Portobello",
+    "autor": "Paulo Coelho",
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null,
+    "tags": [
+      "literatura",
+      "espiritualidade"
+    ]
   },
   {
-  "nome": "Sobre a Brevidade da Vida",
-  "autor": "Sêneca",
-  "inicio": null,
-  "fim": "2026-07-10",
-  "interrompido": null,
-  "retornado": null,
-  "tags": [
-    "estoicismo",
-    "filosofia",
-    "clássico"
-  ]
+    "nome": "Sobre a Brevidade da Vida",
+    "autor": "Sêneca",
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null,
+    "tags": [
+      "estoicismo",
+      "filosofia",
+      "clássico"
+    ]
+  },
+  {
+    "nome": "Admirável Mundo Novo",
+    "autor": "Aldous Huxley",
+    "inicio": null,
+    "fim": null,
+    "interrompido": "2026-07-10",
+    "retornado": null,
+    "tags": [
+      "distopia",
+      "literatura",
+      "ficção científica"
+    ]
   }
 ]
