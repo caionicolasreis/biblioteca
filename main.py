@@ -26,6 +26,7 @@ def carregar(arquivo = biblioteca):
         sys.exit(f"Ocorreu um erro:\n\n{e}")
 
 dados = carregar()
+dados_backup = carregar()
 print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.\n")
 
 
@@ -120,11 +121,16 @@ def inserir_livro():
 
 
 
-# Placeholder da função de remoção
-def deletar():
+# Placeholder da função de reversão
+# Essa função vai precisar de um contador de inserções para saber como gerir os backups de dados em memória
+def reverter():
     print("Função em desenvolvimento. Reclame com o Dev.")
 
 
+
+# Placeholder da função de remoção
+def deletar():
+    print("Função em desenvolvimento. Reclame com o Dev.")
 
 # Salvando dados no JSON da biblioteca
 # Pesquisando sobre, descobri que utilizar um arquivo temporário é interessante para proteger o arquivo original de erros.
