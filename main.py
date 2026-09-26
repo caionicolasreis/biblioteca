@@ -131,26 +131,39 @@ def reverter():
 def deletar():
     """Remove uma ou mais entradas dos dados JSON."""
     alvos = []
+    cont_alvos = 0
     multiplos = input("Deseja remover múltiplos livros (s/n)?: ")
     if multiplos in ("s", "y"):
-        print("Digite o nome de um livro por vez. Insira um valor vazio para finalizar.")
+        print("\nDigite o nome de um livro por vez. Insira um valor vazio para finalizar.\n")
         while True:
             nome = input("Insira o nome do livro a ser removido: ")
             if nome != "":
                 alvos.append(nome)
+                cont_alvos += 1
             else:
                 break
     else:
         alvos = input("Insira o nome do livro a ser removido: ")
+    cont_remocoes = 0
     for a in alvos:
         alvo_individual = a
         for i, livro in enumerate(dados):
             if alvo_individual.lower() == livro["nome"].lower():
                 removido = dados.pop(i)
                 print(f"Removido com sucesso: {removido['autor']} - {removido['nome']}")
+                cont_remocoes += 1
                 break
         else: # Adicionar uma confirmação de remoção caso um não seja encontrado
             print(f"O livro: {alvo_individual}; não foi encontrado na biblioteca.")
+            print(f'O livro "{alvo_individual}" não foi encontrado na biblioteca.')
+    if cont_alvos == 1:
+        print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livro foi removido.")
+    elif cont_alvos > 1:
+        print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livros foram removidos.")
+    else:
+        print(f"\nO Processo de remoção foi concluído e nenhum livro foi removido.") # Considerando que nunca existirão menos de 0 alvos
+        return
+    print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
 
 
 
