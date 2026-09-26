@@ -9,9 +9,10 @@ print("Bem vindo a biblioteca do Mago, o Inefável.\n")
 
 
 
-# Carregando os dados JSON
+# Carregando dados e preparando pontos para retorno
 biblioteca = Path('data.json')
 
+# Definindo a função de carregamento
 def carregar(arquivo = biblioteca):
     """Carrega o arquivo da biblioteca do Mago
     Self-contained com error handling e sys.exit. Termina o programa em qualquer erro."""
@@ -25,9 +26,39 @@ def carregar(arquivo = biblioteca):
     except Exception as e:
         sys.exit(f"Ocorreu um erro:\n\n{e}")
 
+
+
+# Preparando pontos para retorno
 dados = carregar()
-dados_backup = carregar()
+dados_backup1 = {} # Talvez "backup" não seja o melhor nome para essa variável
+dados_backup2 = {} # Talvez "backup" não seja o melhor nome para essa variável
+dados_backup3 = {} # Talvez "backup" não seja o melhor nome para essa variável
 print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.\n")
+
+def criar_ponto_retorno(fonte):
+    # Estou con dificuldades para trazer as variáveis externas para dentro dessa função. Preciso de outra forma de lidar com o problema
+    # Imagino que as cópias aqui sejam problemáticas. Talvez algum módulo de cópia sirva bem
+    # Novamente criei uma cadeia de ifs. Deve existir alguma forma melhor
+    # Ter que gerir 3 variáveis é muito inconveniente.
+    cont_retorno = 0 # O Contador vai resetar sempre que a função terminar...
+    if cont_retorno == 0
+        cont_retorno += 1
+        dados_backup1 = fonte  # Criando primeiro ponto de retorno
+        return
+    elif cont_retorno == 1
+        cont_retorno += 1
+        dados_backup2 = dados_backup1 # Preservando ultimo ponto
+        dados_backup1 = fonte         # Sobrescrevendo penúltimo ponto
+        return
+    elif cont_retorno > 1
+        cont_retorno += 1
+        dados_backup3 = dados_backup2 # Preservando ultimo ponto
+        dados_bakcup2 = dados_backup1 # Preservando penúltimo ponto
+        dados_backpu1 = fonte         # Sobrescrevendo antepenúltimo ponto
+        return
+    else: # Posso desenvolver algo mais útil que uma única mensagem genérica. Talvez com `raise`?
+        print("Houve um problema na criação do ponto de retorno dos dados.")
+        return
 
 
 
