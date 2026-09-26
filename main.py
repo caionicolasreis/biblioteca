@@ -43,7 +43,7 @@ for l in livros:
 
 
 # Função para inserir novos dados em data.json
-def inserir_livro():
+def inserir_dados():
     while True:
         lido = input("Esse livro já foi lido, mesmo que parcialmente(s/n)?: ")
         if lido in ("s", "y"): # or não é aplicável - criaria um truthy
@@ -110,7 +110,8 @@ def inserir_livro():
         confirmacao_insercao = input(f"Os dados que serão cadastrados são: \n\n {insercao} \n\n\n\n Esses dados inseridos estão corretos(s/n)?: ")
         if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
             dados.append(insercao)
-            print("Dados adicionados com sucesso. Utilize a função ""salvar()"" para as tornar permanentes.")
+            print(f"Dados adicionados com sucesso. O livro {insercao['autor']} - {insercao['nome']} foi inserido com sucesso.")
+            print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
             break
         elif confirmacao_insercao == "n":
             print("Inserção cancelada.")  # Posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
@@ -120,15 +121,8 @@ def inserir_livro():
 
 
 
-# Placeholder da função de reversão
-# Essa função vai precisar de um contador de inserções para saber como gerir os backups de dados em memória
-def reverter():
-    print("Função em desenvolvimento. Reclame com o Dev.")
-
-
-
 # Selecionando e removendo uma entrada dos dados
-def deletar():
+def remover_dados():
     """Remove uma ou mais entradas dos dados JSON."""
     alvos = []
     cont_alvos = 0
@@ -154,7 +148,6 @@ def deletar():
                 cont_remocoes += 1
                 break
         else: # Adicionar uma confirmação de remoção caso um não seja encontrado
-            print(f"O livro: {alvo_individual}; não foi encontrado na biblioteca.")
             print(f'O livro "{alvo_individual}" não foi encontrado na biblioteca.')
     if cont_alvos == 1:
         print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livro foi removido.")
@@ -166,10 +159,16 @@ def deletar():
     print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
 
 
+# Placeholder da função de reversão
+# Essa função vai precisar de um contador de inserções para saber como gerir os backups de dados em memória
+def reverter_modificacoes():
+    print("Função em desenvolvimento. Reclame com o Dev.")
+
+
 
 # Salvando dados no JSON da biblioteca
 # Pesquisando sobre, descobri que utilizar um arquivo temporário é interessante para proteger o arquivo original de erros.
-def salvar(arquivo = biblioteca):
+def salvar_modificacoes(arquivo = biblioteca):
     try:
         with open(arquivo, "w") as f:
             json.dump(dados, f, ensure_ascii=False, indent=2)
