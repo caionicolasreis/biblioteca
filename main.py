@@ -34,12 +34,11 @@ print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.\n")
 # Criando uma exibição dos livros disponíveis na biblioteca. Quando os dados crescerem, isso mudará.
 livros = []
 
-for i in dados:
-    livros.append(f"{i["autor"]} - {i["nome"]}")
-
+for d in dados:
+    livros.append(f"{d["autor"]} - {d["nome"]}")
 print(f"Os livros atualmente disponíveis são:")
-for livro in livros:
-    print(f"- {livro}")
+for l in livros:
+    print(f"- {l}")
 
 
 
@@ -128,9 +127,32 @@ def reverter():
 
 
 
-# Placeholder da função de remoção
+# Selecionando e removendo uma entrada dos dados
 def deletar():
-    print("Função em desenvolvimento. Reclame com o Dev.")
+    """Remove uma ou mais entradas dos dados JSON."""
+    alvos = []
+    multiplos = input("Deseja remover múltiplos livros (s/n)?: ")
+    if multiplos in ("s", "y"):
+        print("Digite o nome de um livro por vez. Insira um valor vazio para finalizar.")
+        while True:
+            nome = input("Insira o nome do livro a ser removido: ")
+            if nome != "":
+                alvos.append(nome)
+            else:
+                break
+    else:
+        alvos = input("Insira o nome do livro a ser removido: ")
+    for a in alvos:
+        alvo_individual = a
+        for i, livro in enumerate(dados):
+            if alvo_individual.lower() == livro["nome"].lower():
+                removido = dados.pop(i)
+                print(f"Removido com sucesso: {removido['autor']} - {removido['nome']}")
+                break
+        else: # Adicionar uma confirmação de remoção caso um não seja encontrado
+            print(f"O livro: {alvo_individual}; não foi encontrado na biblioteca.")
+
+
 
 # Salvando dados no JSON da biblioteca
 # Pesquisando sobre, descobri que utilizar um arquivo temporário é interessante para proteger o arquivo original de erros.
