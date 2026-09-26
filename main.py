@@ -31,14 +31,13 @@ print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.\n")
 
 
 
-# Criando uma exibição dos livros disponíveis na biblioteca. Quando os dados crescerem, isso mudará.
-livros = []
-
-for d in dados:
-    livros.append(f"{d["autor"]} - {d["nome"]}")
+# Criando uma exibição dos livros inseridos recentemente na biblioteca
+livros_recentes = []
+for d in dados[-1: -6: -1]: # 5 últimos itens, do mais novo para o mais antigo.
+    livros_recentes.append(f"{d["autor"]} - {d["nome"]}")
 print(f"Os livros atualmente disponíveis são:")
-for l in livros:
-    print(f"- {l}")
+for lr in livros_recentes:
+    print(f"- {lr}")
 
 
 
