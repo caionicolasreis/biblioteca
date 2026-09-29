@@ -44,7 +44,7 @@ dados = carregar()
 print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.")
 snapshots = []
 criar_snapshot(dados, snapshots)
-prinf(f"Snapshot criado. Utilize 'carregar_snapshot()' para retornar para algum snapshot.\n)
+print("Snapshot criado. Utilize 'carregar_snapshot()' para retornar para algum snapshot.\n")
 
 
 
