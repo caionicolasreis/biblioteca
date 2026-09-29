@@ -2,6 +2,7 @@
 
 import json
 import sys
+from copy import deepcopy
 from datetime import date
 from pathlib import Path
 
@@ -26,39 +27,24 @@ def carregar(arquivo = biblioteca):
     except Exception as e:
         sys.exit(f"Ocorreu um erro:\n\n{e}")
 
+# Definindo a função de criação de snapshots
+def criar_snapshot(dados_entrada, historico_snapshots, limite = 5):
+    '''Guarda até n snapshots que podem ser utilizados sob demanda
+    Automaticamente apaga o mais antigo com `pop(0)` ao superar o limite estabelecido.'''
+    historico_snapshots.append(deepcopy(dados_entrada))
+    if len(historico_snapshots) > limite:
+        historico_snapshots.pop(0)
 
+# Placeholder da função de reversão para algum snapshot
+def carregar_snapshot():
+    print("Função em desenvolvimento. Reclame com o Dev.")
 
 # Preparando pontos para retorno
 dados = carregar()
-dados_backup1 = {} # Talvez "backup" não seja o melhor nome para essa variável
-dados_backup2 = {} # Talvez "backup" não seja o melhor nome para essa variável
-dados_backup3 = {} # Talvez "backup" não seja o melhor nome para essa variável
-print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.\n")
-
-def criar_ponto_retorno(fonte):
-    # Estou con dificuldades para trazer as variáveis externas para dentro dessa função. Preciso de outra forma de lidar com o problema
-    # Imagino que as cópias aqui sejam problemáticas. Talvez algum módulo de cópia sirva bem
-    # Novamente criei uma cadeia de ifs. Deve existir alguma forma melhor
-    # Ter que gerir 3 variáveis é muito inconveniente.
-    cont_retorno = 0 # O Contador vai resetar sempre que a função terminar...
-    if cont_retorno == 0
-        cont_retorno += 1
-        dados_backup1 = fonte  # Criando primeiro ponto de retorno
-        return
-    elif cont_retorno == 1
-        cont_retorno += 1
-        dados_backup2 = dados_backup1 # Preservando ultimo ponto
-        dados_backup1 = fonte         # Sobrescrevendo penúltimo ponto
-        return
-    elif cont_retorno > 1
-        cont_retorno += 1
-        dados_backup3 = dados_backup2 # Preservando ultimo ponto
-        dados_bakcup2 = dados_backup1 # Preservando penúltimo ponto
-        dados_backpu1 = fonte         # Sobrescrevendo antepenúltimo ponto
-        return
-    else: # Posso desenvolver algo mais útil que uma única mensagem genérica. Talvez com `raise`?
-        print("Houve um problema na criação do ponto de retorno dos dados.")
-        return
+print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.")
+snapshots = []
+criar_snapshot(dados, snapshots)
+prinf(f"Snapshot criado. Utilize 'carregar_snapshot()' para retornar para algum snapshot.\n)
 
 
 
@@ -187,12 +173,6 @@ def remover_dados():
         print(f"\nO Processo de remoção foi concluído e nenhum livro foi removido.") # Considerando que nunca existirão menos de 0 alvos
         return
     print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
-
-
-# Placeholder da função de reversão
-# Essa função vai precisar de um contador de inserções para saber como gerir os backups de dados em memória
-def reverter_modificacoes():
-    print("Função em desenvolvimento. Reclame com o Dev.")
 
 
 
