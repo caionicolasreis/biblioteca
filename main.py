@@ -15,7 +15,8 @@ biblioteca = Path('data.json')
 
 # Definindo a função de carregamento
 def carregar(arquivo = biblioteca):
-    """Carrega o arquivo da biblioteca do Mago
+    """Carrega o arquivo da biblioteca do Mago.
+
     Self-contained com error handling e sys.exit. Termina o programa em qualquer erro."""
     try:
         with open(arquivo, "r") as f:
@@ -29,7 +30,8 @@ def carregar(arquivo = biblioteca):
 
 # Definindo a função de criação de snapshots
 def criar_snapshot(dados_entrada, historico_snapshots, limite = 5):
-    '''Guarda até n snapshots que podem ser utilizados sob demanda
+    '''Guarda até n snapshots que podem ser utilizados sob demanda.
+
     Automaticamente apaga o mais antigo com `pop(0)` ao superar o limite estabelecido.'''
     historico_snapshots.append(deepcopy(dados_entrada))
     if len(historico_snapshots) > limite:
@@ -40,6 +42,7 @@ def carregar_snapshot():
     print("Função em desenvolvimento. Reclame com o Dev.")
 
 # Preparando pontos para retorno
+# Notei que esse bloco imprime mensagens de sucesso mesmo em caso de falhas. Falta error handling...
 dados = carregar()
 print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.")
 snapshots = []
@@ -52,7 +55,7 @@ print("Snapshot criado. Utilize 'carregar_snapshot()' para retornar para algum s
 livros_recentes = []
 for d in dados[-1: -6: -1]: # 5 últimos itens, do mais novo para o mais antigo.
     livros_recentes.append(f"{d["autor"]} - {d["nome"]}")
-print(f"Os livros atualmente disponíveis são:")
+print(f"Os livros atualmente disponíveis são:") # String não condiz com a realidade
 for lr in livros_recentes:
     print(f"- {lr}")
 
@@ -60,6 +63,9 @@ for lr in livros_recentes:
 
 # Função para inserir novos dados em data.json
 def inserir_dados():
+    """Cria e insere nos dados uma nova entrada.
+
+    Não permite saída da função até seu final."""
     while True:
         lido = input("Esse livro já foi lido, mesmo que parcialmente(s/n)?: ")
         if lido in ("s", "y"): # or não é aplicável - criaria um truthy
@@ -69,6 +75,7 @@ def inserir_dados():
 
             def inserir_data(data): # Função que permitirá cálculos de datas antes do salvamento
                 """Converte uma string de data para formato ISO (AAAA-MM-DD).
+
                 Permite novas tentativas caso ocorra algum ValueError."""
                 while True:
                     if data == "":
@@ -88,7 +95,7 @@ def inserir_dados():
             autor = input("Insira o autor do livro: ")
             inicio = fim = interrompido = retornado = None
             break
-        else: # Não vejo muita necessidade desse else existir. Mas ele não fere o código por agora.
+        else: # Cobre o caso de respostas vazias; como em um enter acidental
             print("Resposta inválida.")
 
     # Inserção de tags individuais sequencialmente - procurar uma forma de inserir diversas
@@ -103,9 +110,11 @@ def inserir_dados():
     # Preparando dados para serem inseridos no JSON
     def para_json(valor):
         """Tenta converter algum valor para uma data de formato ISO (AAAA-MM-DD).
+
         Retorna Null caso nada seja inserido.
 
-        Quebra em qualquer entrada que não seja possível converter para o formato ISO."""
+        Quebra em qualquer entrada que não seja possível converter para o formato ISO.
+        A preparação dos dados de entrada já elimina essa possibilidade."""
         if valor:
             return valor.isoformat()
         else:
@@ -132,7 +141,7 @@ def inserir_dados():
         elif confirmacao_insercao == "n":
             print("Inserção cancelada.")  # Posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
             break
-        else:
+        else:  # Cobre o caso de respostas vazias; como em um enter acidental
             print("Resposta inválida.")
 
 
@@ -152,9 +161,10 @@ def remover_dados():
                 cont_alvos += 1
             else:
                 break
-    else:
-        alvos = input("Insira o nome do livro a ser removido: ")
-    cont_remocoes = 0
+    else: # Trata "n" e "" da mesma maneira. Um enter acidental pode iniciar um comportamento indesejado.
+          # Corrigir com loop while true, elif com break para o caso "n", e else para reiniciar o loop.
+        alvos = input("Insira o nome do livro a ser removido: ") # Faltou adicionar o `cont_alvos` aqui
+    cont_remocoes = 0 # Faria mais sentido mover essa linha para o começo da função?
     for a in alvos:
         alvo_individual = a
         for i, livro in enumerate(dados):
@@ -169,7 +179,7 @@ def remover_dados():
         print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livro foi removido.")
     elif cont_alvos > 1:
         print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livros foram removidos.")
-    else:
+    else: # Está sendo impresso caso apenas um livro seja inserido por meio do else da linha 164. Comentário na linha entrega a solução.
         print(f"\nO Processo de remoção foi concluído e nenhum livro foi removido.") # Considerando que nunca existirão menos de 0 alvos
         return
     print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
@@ -177,8 +187,10 @@ def remover_dados():
 
 
 # Salvando dados no JSON da biblioteca
-# Pesquisando sobre, descobri que utilizar um arquivo temporário é interessante para proteger o arquivo original de erros.
 def salvar_modificacoes(arquivo = biblioteca):
+    """Salva as modificações de 'dados' no arquivo da biblioteca.
+
+    Não possui nenhuma proteção direta para erros. Depende completamente dos snapshots."""
     try:
         with open(arquivo, "w") as f:
             json.dump(dados, f, ensure_ascii=False, indent=2)
