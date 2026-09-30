@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import os
 import sys
 from copy import deepcopy
 from datetime import date
@@ -190,12 +191,16 @@ def remover_dados():
 def salvar_modificacoes(arquivo = biblioteca):
     """Salva as modificações de 'dados' no arquivo da biblioteca.
 
-    Não possui nenhuma proteção direta para erros. Depende completamente dos snapshots."""
+    Utiliza um arquivo temporário para salvamento a prova de interrupções"""
+    tmp = arquivo.with_suffix(".json.tmp")                    # Cria o endereço do arquivo em memória e substitui '.json' por '.json.tmp'
     try:
-        with open(arquivo, "w") as f:
-            json.dump(dados, f, ensure_ascii=False, indent=2)
-            print(f"Inserções salvas com sucesso em: {biblioteca.resolve()}")
+        with open(tmp, "w") as f:                             # Cria o arquivo temporário
+            json.dump(dados, f, ensure_ascii=False, indent=2) # Preenche o arquivo com 'dados'
+        os.replace(tmp, arquivo)                              # mv. Sem brechas para corrupção.
+        print(f"Inserções salvas com sucesso em: {biblioteca.resolve()}")
     except (OSError, TypeError) as e:
         print(f"Ocorreu um erro durante o salvamento no arquivo: {biblioteca.resolve()}:\n\n{e}")
     except Exception as e:
         print(f"Ocorreu um erro:\n\n{e}")
+    tmp.unlink(missing_ok=True) # Caso o replace (mv) funcione, não resta arquivo para remover (rm). Mas caso falhe, é necessário.
+                                # Por isso utiliza-se o 'missing_ok=True'.
