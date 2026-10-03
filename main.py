@@ -38,9 +38,11 @@ def criar_snapshot(dados_entrada, historico_snapshots, limite = 5):
     if len(historico_snapshots) > limite:
         historico_snapshots.pop(0)
 
-# Placeholder da função de reversão para algum snapshot
-def carregar_snapshot():
-    print("Função em desenvolvimento. Reclame com o Dev.")
+# Definindo a função de reversão para algum snapshot
+def carregar_snapshot(dados_atuais, i = 0):
+    dados_atuais[:] = deepcopy(snapshots[i]) # Sem o slicing, é interpretado como variável local nesse caso
+    criar_snapshot(dados, snapshots)         # Atualiza a lista de snapshots. Cria duplicidade,
+                                             # mas preserva histórico correto
 
 # Preparando pontos para retorno
 # Notei que esse bloco imprime mensagens de sucesso mesmo em caso de falhas. Falta error handling...
