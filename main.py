@@ -7,7 +7,7 @@ from copy import deepcopy
 from datetime import date
 from pathlib import Path
 
-print("Bem vindo a biblioteca do Mago, o Inefável.\n")
+print("Bem vindo a Biblioteca do Mago, o Inefável.\n")
 
 
 
@@ -56,7 +56,7 @@ print("Snapshot criado. Utilize 'carregar_snapshot()' para retornar para algum s
 livros_recentes = []
 for d in dados[-1: -6: -1]: # 5 últimos itens, do mais novo para o mais antigo.
     livros_recentes.append(f"{d["autor"]} - {d["nome"]}")
-print(f"Os livros atualmente disponíveis são:") # String não condiz com a realidade
+print(f"As aquisições mais recentes da Biblioteca do Mago:\n")
 for lr in livros_recentes:
     print(f"- {lr}")
 
