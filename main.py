@@ -47,10 +47,40 @@ def criar_snapshot(dados_entrada, historico_snapshots, limite = 10):
         print(f"Snapshot criado.\n{len(historico_snapshots)} snapshots existentes.")
 
 # Definindo a função de reversão para algum snapshot
-def carregar_snapshot(dados_atuais, i = 0):
-    dados_atuais[:] = deepcopy(snapshots[i]) # Sem o slicing, é interpretado como variável local nesse caso
-    criar_snapshot(dados, snapshots)         # Atualiza a lista de snapshots. Cria duplicidade,
-                                             # mas preserva histórico correto
+def carregar_snapshot(dados_atuais, menu = "n", i = 0):
+    """Carrega uma snapshot.
+
+    Permite exibição e escolha direta das opções de snapshot pelo parâmetro 'menu' (s/n)."""
+    cancelamento = False
+    while True:
+        if menu in ("s", "y"):
+            for i, valores in enumerate(snapshots):
+                print(i, "- ", valores, "\n")
+            try:
+                i = int(input("Insira qual snapshot deseja restaurar: "))
+            except ValueError:
+                cancelamento = True # Interpretando inputs vazios como tentativa de saída
+                break
+            break
+        elif menu == "n":
+            break
+        else:
+            print("Resposta inválida.")
+    try:
+        if cancelamento == False:
+            dados_atuais[:] = deepcopy(snapshots[i]) # Sem o slicing, é interpretado como variável local nesse caso
+            print(f"Snapshot {i} carregado com sucesso.")
+            criar_snapshot(dados, snapshots)         # Atualiza a lista de snapshots. Cria duplicidade,
+                                                     # mas preserva histórico correto
+        else:
+            print("Carregamento cancelado.")
+            return
+    except IndexError:
+        print(f"O snapshot {i} não existe.")
+        return
+    except Exception as e:
+        print(f"Ocorreu um erro durante o carregamento do snapshot {i}:\n\n{e}")
+        return
 
 # Preparando pontos para retorno
 # Notei que esse bloco imprime mensagens de sucesso mesmo em caso de falhas. Falta error handling...
