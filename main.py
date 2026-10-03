@@ -40,11 +40,11 @@ def criar_snapshot(dados_entrada, historico_snapshots, limite = 10):
         historico_snapshots.pop(0)
         snapshot_removido = True
     if snapshot_removido == True:
-        print(f"Snapshot criado. Entrada mais antiga removida.\n{len(historico_snapshots)} snapshots existentes.\n")
+        print(f"Snapshot criado. Entrada mais antiga removida.\n{len(historico_snapshots)} snapshots existentes.")
     elif len(historico_snapshots) == 1:
-        print(f"Snapshot criado.\n1 snapshot existente.\n")
+        print(f"Snapshot criado.\n1 snapshot existente.")
     else:
-        print(f"Snapshot criado.\n{len(historico_snapshots)} snapshots existentes.\n")
+        print(f"Snapshot criado.\n{len(historico_snapshots)} snapshots existentes.")
 
 # Definindo a função de reversão para algum snapshot
 def carregar_snapshot(dados_atuais, i = 0):
@@ -64,7 +64,7 @@ criar_snapshot(dados, snapshots)
 livros_recentes = []
 for d in dados[-1: -6: -1]: # 5 últimos itens, do mais novo para o mais antigo.
     livros_recentes.append(f"{d["autor"]} - {d["nome"]}")
-print(f"As aquisições mais recentes da Biblioteca do Mago:\n")
+print(f"\nAs aquisições mais recentes da Biblioteca do Mago:\n")
 for lr in livros_recentes:
     print(f"- {lr}")
 
