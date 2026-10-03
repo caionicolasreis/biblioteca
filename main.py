@@ -30,7 +30,7 @@ def carregar(arquivo = biblioteca):
         sys.exit(f"Ocorreu um erro:\n\n{e}")
 
 # Definindo a função de criação de snapshots
-def criar_snapshot(dados_entrada, historico_snapshots, limite = 5):
+def criar_snapshot(dados_entrada, historico_snapshots, limite = 10):
     '''Guarda até n snapshots que podem ser utilizados sob demanda.
 
     Automaticamente apaga o mais antigo com `pop(0)` ao superar o limite estabelecido.'''
