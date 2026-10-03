@@ -31,12 +31,20 @@ def carregar(arquivo = biblioteca):
 
 # Definindo a função de criação de snapshots
 def criar_snapshot(dados_entrada, historico_snapshots, limite = 10):
-    '''Guarda até n snapshots que podem ser utilizados sob demanda.
+    """Guarda até n snapshots que podem ser utilizados sob demanda.
 
-    Automaticamente apaga o mais antigo com `pop(0)` ao superar o limite estabelecido.'''
+    Automaticamente apaga o mais antigo com `pop(0)` ao superar o limite estabelecido."""
+    snapshot_removido = False
     historico_snapshots.append(deepcopy(dados_entrada))
     if len(historico_snapshots) > limite:
         historico_snapshots.pop(0)
+        snapshot_removido = True
+    if snapshot_removido == True:
+        print(f"Snapshot criado. Entrada mais antiga removida.\n{len(historico_snapshots)} snapshots existentes.\n")
+    elif len(historico_snapshots) == 1:
+        print(f"Snapshot criado.\n1 snapshot existente.\n")
+    else:
+        print(f"Snapshot criado.\n{len(historico_snapshots)} snapshots existentes.\n")
 
 # Definindo a função de reversão para algum snapshot
 def carregar_snapshot(dados_atuais, i = 0):
@@ -50,8 +58,6 @@ dados = carregar()
 print(f"Biblioteca carregada com sucesso a partir de {biblioteca.resolve()}.")
 snapshots = []
 criar_snapshot(dados, snapshots)
-print("Snapshot criado. Utilize 'carregar_snapshot()' para retornar para algum snapshot.\n")
-
 
 
 # Criando uma exibição dos livros inseridos recentemente na biblioteca
