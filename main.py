@@ -63,31 +63,45 @@ for lr in livros_recentes:
     print(f"- {lr}")
 
 
+# Função que permitirá cálculos de datas antes do salvamento
+def inserir_data(data):
+    """Converte uma string de data para formato ISO (AAAA-MM-DD).
+
+    Permite novas tentativas caso ocorra algum ValueError."""
+    while True:
+        if data == "":
+            return None
+        try:
+            return date.fromisoformat(data)
+        except ValueError:
+            data = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
+
+# Função de preparação dos dados para serem inseridos no JSON
+def para_json(valor):
+    """Tenta converter algum valor para uma data de formato ISO (AAAA-MM-DD).
+
+    Retorna Null caso nada seja inserido.
+
+    Quebra em qualquer entrada que não seja possível converter para o formato ISO.
+    A preparação dos dados de entrada já elimina essa possibilidade."""
+    if valor:
+        return valor.isoformat()
+    else:
+        return valor
 
 # Função para inserir novos dados em data.json
 def inserir_dados():
     """Cria e insere nos dados uma nova entrada.
 
     Não permite saída da função até seu final."""
+    # Input dos dados a serem registrados
     while True:
         lido = input("Esse livro já foi lido, mesmo que parcialmente(s/n)?: ")
         if lido in ("s", "y"): # or não é aplicável - criaria um truthy
             nome = input("Insira o nome do livro: ")
             autor = input("Insira o autor do livro: ")
-            print("Cadastre as datas de leitura em formato ISO (AAAA-MM-DD). Pressione Enter para pular qualquer etapa.")
-
-            def inserir_data(data): # Função que permitirá cálculos de datas antes do salvamento
-                """Converte uma string de data para formato ISO (AAAA-MM-DD).
-
-                Permite novas tentativas caso ocorra algum ValueError."""
-                while True:
-                    if data == "":
-                        return None
-                    try:
-                        return date.fromisoformat(data)
-                    except ValueError:
-                        data = input("Data inválida. Tente novamente com o formato ISO (AAAA-MM-DD): ")
-
+            print("Cadastre as datas de leitura em formato ISO (AAAA-MM-DD). "
+                  "Pressione Enter para pular qualquer etapa.")
             inicio = inserir_data(input("Insira quando iniciou a leitura do livro: "))
             fim = inserir_data(input("Insira quando finalizou a leitura do livro: "))
             interrompido = inserir_data(input("Insira quando interrompeu a leitura do livro: "))
@@ -101,7 +115,7 @@ def inserir_dados():
         else: # Cobre o caso de respostas vazias; como em um enter acidental
             print("Resposta inválida.")
 
-    # Inserção de tags individuais sequencialmente - procurar uma forma de inserir diversas
+    # Inputs de tags individuais sequencialmente - procurar uma forma de inserir diversas
     tags = []
     print("Insira uma tag por vez")
     while True:
@@ -110,19 +124,7 @@ def inserir_dados():
             break
         tags.append(tag)
 
-    # Preparando dados para serem inseridos no JSON
-    def para_json(valor):
-        """Tenta converter algum valor para uma data de formato ISO (AAAA-MM-DD).
-
-        Retorna Null caso nada seja inserido.
-
-        Quebra em qualquer entrada que não seja possível converter para o formato ISO.
-        A preparação dos dados de entrada já elimina essa possibilidade."""
-        if valor:
-            return valor.isoformat()
-        else:
-            return valor
-
+    # Preparando inserção de dados
     insercao = {
         "nome": nome,
         "autor": autor,
@@ -133,16 +135,19 @@ def inserir_dados():
         "tags": tags
     }
 
-    # Confirmando se os dados estão corretos diretamente com o usuário e inserido caso estejam
+    # Confirmando se os dados estão corretos diretamente com o usuário e os inserido caso estejam
     while True:
-        confirmacao_insercao = input(f"Os dados que serão cadastrados são: \n\n {insercao} \n\n\n\n Esses dados inseridos estão corretos(s/n)?: ")
+        confirmacao_insercao = input(f"Os dados que serão cadastrados são: \n\n {insercao} \n\n\n\n "
+                                     f"Esses dados inseridos estão corretos(s/n)?: ")
         if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
             dados.append(insercao)
-            print(f"Dados adicionados com sucesso. O livro {insercao['autor']} - {insercao['nome']} foi inserido com sucesso.")
+            print(f"Dados adicionados com sucesso. "
+                  f"O livro {insercao['autor']} - {insercao['nome']} foi inserido com sucesso.")
             print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
             break
         elif confirmacao_insercao == "n":
-            print("Inserção cancelada.")  # Posso criar algo melhor para editar o que foi inserido caso a resposta seja "n"
+            print("Inserção cancelada.")  # Posso criar algo melhor para editar o que
+                                          # foi inserido caso a resposta seja "n"
             break
         else:  # Cobre o caso de respostas vazias; como em um enter acidental
             print("Resposta inválida.")
