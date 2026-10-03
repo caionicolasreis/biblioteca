@@ -152,20 +152,26 @@ def remover_dados():
     """Remove uma ou mais entradas dos dados JSON."""
     alvos = []
     cont_alvos = 0
+    cont_remocoes = 0
+
     multiplos = input("Deseja remover múltiplos livros (s/n)?: ")
-    if multiplos in ("s", "y"):
-        print("\nDigite o nome de um livro por vez. Insira um valor vazio para finalizar.\n")
-        while True:
-            nome = input("Insira o nome do livro a ser removido: ")
-            if nome != "":
-                alvos.append(nome)
-                cont_alvos += 1
-            else:
-                break
-    else: # Trata "n" e "" da mesma maneira. Um enter acidental pode iniciar um comportamento indesejado.
-          # Corrigir com loop while true, elif com break para o caso "n", e else para reiniciar o loop.
-        alvos = input("Insira o nome do livro a ser removido: ") # Faltou adicionar o `cont_alvos` aqui
-    cont_remocoes = 0 # Faria mais sentido mover essa linha para o começo da função?
+    while True:
+        if multiplos in ("s", "y"):
+            print("\nDigite o nome de um livro por vez. Insira um valor vazio para finalizar.\n")
+            while True:
+                nome = input("Insira o nome do livro a ser removido: ")
+                if nome != "":
+                    alvos.append(nome)
+                    cont_alvos += 1
+                else:
+                    break
+        elif multiplos == "n":
+            alvos = input("Insira o nome do livro a ser removido: ")
+            cont_alvos += 1
+            break
+        else: # Cobre o caso de respostas vazias; como em um enter acidental
+            print("Resposta inválida.")
+
     for a in alvos:
         alvo_individual = a
         for i, livro in enumerate(dados):
@@ -176,6 +182,7 @@ def remover_dados():
                 break
         else: # Adicionar uma confirmação de remoção caso um não seja encontrado
             print(f'O livro "{alvo_individual}" não foi encontrado na biblioteca.')
+
     if cont_alvos == 1:
         print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livro foi removido.")
     elif cont_alvos > 1:
