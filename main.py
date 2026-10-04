@@ -209,6 +209,7 @@ def remover_dados():
                     cont_alvos += 1
                 else:
                     break
+            break
         elif multiplos == "n":
             alvos = input("Insira o nome do livro a ser removido: ")
             cont_alvos += 1
