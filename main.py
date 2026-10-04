@@ -198,24 +198,14 @@ def remover_dados():
     cont_alvos = 0
     cont_remocoes = 0
 
-    multiplos = input("Deseja remover múltiplos livros (s/n)?: ")
+    print("\nDigite o nome de um livro por vez. Insira um valor vazio para finalizar.\n")
     while True:
-        if multiplos in ("s", "y"):
-            print("\nDigite o nome de um livro por vez. Insira um valor vazio para finalizar.\n")
-            while True:
-                nome = input("Insira o nome do livro a ser removido: ")
-                if nome != "":
-                    alvos.append(nome)
-                    cont_alvos += 1
-                else:
-                    break
-            break
-        elif multiplos == "n":
-            alvos = input("Insira o nome do livro a ser removido: ")
+        nome = input("Insira o nome do livro a ser removido: ")
+        if nome != "":
+            alvos.append(nome)
             cont_alvos += 1
+        else:
             break
-        else: # Cobre o caso de respostas vazias; como em um enter acidental
-            print("Resposta inválida.")
 
     for a in alvos:
         alvo_individual = a
