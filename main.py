@@ -212,22 +212,24 @@ def remover_dados():
         for i, livro in enumerate(dados):
             if alvo_individual.lower() == livro["nome"].lower():
                 removido = dados.pop(i)
-                print(f"Removido com sucesso: {removido['autor']} - {removido['nome']}")
+                print(f"- Removido com sucesso: {removido['autor']} - {removido['nome']}")
                 cont_remocoes += 1
                 break
         else: # Adicionar uma confirmação de remoção caso um não seja encontrado
-            print(f'O livro "{alvo_individual}" não foi encontrado na biblioteca.')
+            print(f'- O livro "{alvo_individual}" não foi encontrado na biblioteca.')
 
     if cont_alvos == 1:
-        print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livro foi removido.\n")
-        criar_snapshot(dados, snapshots)
+        print(f"\nO processo de remoção foi concluído e {cont_remocoes} livro de {cont_alvos} alvo foi removido.\n")
     elif cont_alvos > 1:
-        print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livros foram removidos.\n")
-        criar_snapshot(dados, snapshots)
+        print(f"\nO processo de remoção foi concluído e {cont_remocoes} livros de {cont_alvos} alvos foram removidos.\n")
     else: # Está sendo impresso caso apenas um livro seja inserido por meio do else da linha 164. Comentário na linha entrega a solução.
         print(f"\nO Processo de remoção foi concluído e nenhum livro foi removido.") # Considerando que nunca existirão menos de 0 alvos
         return
-    print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
+    if cont_remocoes > 0:
+        criar_snapshot(dados, snapshots)
+        print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
+    else:
+        print(f'Utilize a função "salvar()" para tornar as modificações permanentes.')
 
 
 
