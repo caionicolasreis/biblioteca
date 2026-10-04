@@ -178,7 +178,8 @@ def inserir_dados():
         if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
             dados.append(insercao)
             print(f"Dados adicionados com sucesso. "
-                  f"O livro {insercao['autor']} - {insercao['nome']} foi inserido com sucesso.")
+                  f"O livro {insercao['autor']} - {insercao['nome']} foi inserido com sucesso.\n")
+            criar_snapshot(dados, snapshots)
             print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
             break
         elif confirmacao_insercao == "n":
@@ -227,9 +228,11 @@ def remover_dados():
             print(f'O livro "{alvo_individual}" não foi encontrado na biblioteca.')
 
     if cont_alvos == 1:
-        print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livro foi removido.")
+        print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livro foi removido.\n")
+        criar_snapshot(dados, snapshots)
     elif cont_alvos > 1:
-        print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livros foram removidos.")
+        print(f"\nO processo de remoção foi concluído e {cont_remocoes} de {cont_alvos} livros foram removidos.\n")
+        criar_snapshot(dados, snapshots)
     else: # Está sendo impresso caso apenas um livro seja inserido por meio do else da linha 164. Comentário na linha entrega a solução.
         print(f"\nO Processo de remoção foi concluído e nenhum livro foi removido.") # Considerando que nunca existirão menos de 0 alvos
         return
