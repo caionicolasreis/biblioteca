@@ -219,11 +219,15 @@ def remover_dados():
             print(f'- O livro "{alvo_individual}" não foi encontrado na biblioteca.')
 
     if cont_alvos == 1:
-        print(f"\nO processo de remoção foi concluído e {cont_remocoes} livro de {cont_alvos} alvo foi removido.\n")
+        print(f"\nO processo de remoção foi concluído e "
+              f"{cont_remocoes} livro de {cont_alvos} alvo foi removido.\n")
     elif cont_alvos > 1:
-        print(f"\nO processo de remoção foi concluído e {cont_remocoes} livros de {cont_alvos} alvos foram removidos.\n")
-    else: # Está sendo impresso caso apenas um livro seja inserido por meio do else da linha 164. Comentário na linha entrega a solução.
-        print(f"\nO Processo de remoção foi concluído e nenhum livro foi removido.") # Considerando que nunca existirão menos de 0 alvos
+        print(f"\nO processo de remoção foi concluído e "
+              f"{cont_remocoes} livros de {cont_alvos} alvos foram removidos.\n")
+    else: # Está sendo impresso caso apenas um livro seja inserido por meio do else da linha 164.
+          # Comentário na linha entrega a solução.
+        print(f"\nO Processo de remoção foi concluído e nenhum livro foi removido.") # Considerando que nunca existirão
+                                                                                     # menos de 0 alvos
         return
     if cont_remocoes > 0:
         criar_snapshot(dados, snapshots)
@@ -238,7 +242,8 @@ def salvar_modificacoes(arquivo = biblioteca):
     """Salva as modificações de 'dados' no arquivo da biblioteca.
 
     Utiliza um arquivo temporário para salvamento a prova de interrupções"""
-    tmp = arquivo.with_suffix(".json.tmp")                    # Cria o endereço do arquivo em memória e substitui '.json' por '.json.tmp'
+    tmp = arquivo.with_suffix(".json.tmp")                    # Cria o endereço do arquivo em memória
+                                                              # e substitui '.json' por '.json.tmp'
     try:
         with open(tmp, "w") as f:                             # Cria o arquivo temporário
             json.dump(dados, f, ensure_ascii=False, indent=2) # Preenche o arquivo com 'dados'
@@ -248,5 +253,5 @@ def salvar_modificacoes(arquivo = biblioteca):
         print(f"Ocorreu um erro durante o salvamento no arquivo: {biblioteca.resolve()}:\n\n{e}")
     except Exception as e:
         print(f"Ocorreu um erro:\n\n{e}")
-    tmp.unlink(missing_ok=True) # Caso o replace (mv) funcione, não resta arquivo para remover (rm). Mas caso falhe, é necessário.
-                                # Por isso utiliza-se o 'missing_ok=True'.
+    tmp.unlink(missing_ok=True) # Caso o replace (mv) funcione, não resta arquivo para remover (rm).
+                                # Mas caso falhe, é necessário. Por isso utiliza-se o 'missing_ok=True'.
