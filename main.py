@@ -193,47 +193,76 @@ def inserir_dados():
 
 # Selecionando e removendo uma entrada dos dados
 def remover_dados():
-    """Remove uma ou mais entradas dos dados JSON."""
-    alvos = []
-    cont_alvos = 0
-    cont_remocoes = 0
+    """Remove uma ou mais entradas dos dados JSON.
 
-    print("\nDigite o nome de um livro por vez. Insira um valor vazio para finalizar.\n")
+    Solicita individualmente diversos livros para a remoção, procura matches com os dados, retorna a entradas
+    encontradas e as não encontradas, solicita confirmação para a remoção dos encontrados, remove e cria um snapshot.
+    Caso nenhum input seja entregue, nenhum alvo seja encontrado ou o usuário negue a remoção, a função é encerrada.
+
+    Limitações conhecidas:
+    - Nào é capaz de discernir entre 2 livros com o mesmo nome e remove apenas o primeiro que encontrar
+    - Não existe funcionalidade para alterar os alvos após input"""
+
+    # Criação dos alvos para remoção
+    alvos = []        # Lista de alvos
+    print("\nDigite o nome de um livro por vez. Insira um valor vazio para finalizar a inserção.\n")
     while True:
         nome = input("Insira o nome do livro a ser removido: ")
         if nome != "":
             alvos.append(nome)
-            cont_alvos += 1
         else:
             break
 
-    for a in alvos:
+    # Procura dos alvos dentro dos dados existentes
+    encontrado = []     # Lista de dicionários
+    nao_encontrado = [] # Lista comum
+    for a in alvos:     # Separa os livros encontrados dos não encontrados e os armazena em listas separadas
         alvo_individual = a
         for i, livro in enumerate(dados):
             if alvo_individual.lower() == livro["nome"].lower():
-                removido = dados.pop(i)
-                print(f"- Removido com sucesso: {removido['autor']} - {removido['nome']}")
-                cont_remocoes += 1
+                encontrado.append({"i": i, "autor": livro["autor"], "nome": livro["nome"]})
                 break
-        else: # Adicionar uma confirmação de remoção caso um não seja encontrado
-            print(f'- O livro "{alvo_individual}" não foi encontrado na biblioteca.')
+        else:
+            nao_encontrado.append(alvo_individual)
 
-    if cont_alvos == 1:
-        print(f"\nO processo de remoção foi concluído e "
-              f"{cont_remocoes} livro de {cont_alvos} alvo foi removido.\n")
-    elif cont_alvos > 1:
-        print(f"\nO processo de remoção foi concluído e "
-              f"{cont_remocoes} livros de {cont_alvos} alvos foram removidos.\n")
-    else: # Está sendo impresso caso apenas um livro seja inserido por meio do else da linha 164.
-          # Comentário na linha entrega a solução.
-        print(f"\nO Processo de remoção foi concluído e nenhum livro foi removido.") # Considerando que nunca existirão
-                                                                                     # menos de 0 alvos
+    # Feedback dos resultados da procura
+    cont_remocoes = 0 # Contagem de livros removidos
+    if len(encontrado) == 0:     # Nenhum encontrado, fim de operação
+        print("Nenhum dos livros foi encontrado. Operação encerrada.")
         return
-    if cont_remocoes > 0:
-        criar_snapshot(dados, snapshots)
-        print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
-    else:
-        print(f'Utilize a função "salvar()" para tornar as modificações permanentes.')
+    elif len(encontrado) > 0:    # Pelo menos um encontrado
+        print("Foram encontrados os livros:")
+        for e_livro in encontrado:
+            print(f"- {e_livro["autor"]} - {e_livro["nome"]}") # Utiliza o nome com a capitalização real
+    if len(nao_encontrado) > 0 : # Pelo menos um não encontrado
+        print("\nNÃO foram encontrados os livros:")
+        for ne_livro in nao_encontrado: # Utiliza o nome com a capitalização do usuário
+            print(f"- {ne_livro}")
+
+    # Confirmação e remoção dos alvos encontrados
+    while True:
+        seguir = input("Deseja prosseguir com a remoção dos livros encontrados (s/n)?")
+        if seguir in("s", "y"):
+            for i in reversed(encontrado):
+                dados.pop(i["i"]) # Remove o alvo utilizando o índice da variável "encontrado"
+                cont_remocoes += 1
+                print(f"O livro {i["autor"]} - {i["nome"]} foi removido com sucesso.")
+            break
+        elif seguir == "n":
+            print("Remoção cancelada.")
+            return
+        else: # Cobre o caso de respostas vazias; como em um enter acidental
+            print("Resposta inválida.")
+
+    # Mensagens finais e criação de snapshot automático
+    if len(alvos) == 1:  # Em caso de remoção única
+        print(f"\nO processo de remoção foi concluído e "
+              f"{cont_remocoes} de {len(alvos)} livros foi removido.\n")
+    elif len(alvos) > 1: # Em caso de diversos alvos
+        print(f"\nO processo de remoção foi concluído e "
+              f"{cont_remocoes} de {len(alvos)} livros foram removidos.\n")
+    criar_snapshot(dados, snapshots) # Snapshot criado após as modificações
+    print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
 
 
 
