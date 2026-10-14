@@ -98,6 +98,8 @@ print(f"\nAs aquisições mais recentes da Biblioteca do Mago:\n")
 for lr in livros_recentes:
     print(f"- {lr}")
 
+# Variáveis utilizadas em diversas funções
+mensagem_salvar = '\nUtilize a função "salvar_modificacoes()" para tornar as modificações permanentes.'
 
 # Função que permitirá cálculos de datas antes do salvamento
 def inserir_data(data):
@@ -180,7 +182,7 @@ def inserir_dados():
             print(f"Dados adicionados com sucesso. "
                   f"O livro {insercao['autor']} - {insercao['nome']} foi inserido com sucesso.\n")
             criar_snapshot(dados, snapshots)
-            print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
+            print(mensagem_salvar)
             break
         elif confirmacao_insercao == "n":
             print("Inserção cancelada.")  # Posso criar algo melhor para editar o que
@@ -262,7 +264,7 @@ def remover_dados():
         print(f"\nO processo de remoção foi concluído e "
               f"{cont_remocoes} de {len(alvos)} livros foram removidos.\n")
     criar_snapshot(dados, snapshots) # Snapshot criado após as modificações
-    print(f'\nUtilize a função "salvar()" para tornar as modificações permanentes.')
+    print(mensagem_salvar)
 
 
 
