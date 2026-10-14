@@ -259,7 +259,7 @@ def remover_dados():
     # Mensagens finais e criação de snapshot automático
     if len(alvos) == 1:  # Em caso de remoção única
         print(f"\nO processo de remoção foi concluído e "
-              f"{cont_remocoes} de {len(alvos)} livros foi removido.\n")
+              f"{cont_remocoes} de {len(alvos)} livro foi removido.\n")
     elif len(alvos) > 1: # Em caso de diversos alvos
         print(f"\nO processo de remoção foi concluído e "
               f"{cont_remocoes} de {len(alvos)} livros foram removidos.\n")
