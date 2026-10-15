@@ -175,8 +175,14 @@ def inserir_dados():
 
     # Confirmando se os dados estão corretos diretamente com o usuário e os inserido caso estejam
     while True:
-        confirmacao_insercao = input(f"Os dados que serão cadastrados são: \n\n {insercao} \n\n\n\n "
-                                     f"Esses dados inseridos estão corretos(s/n)?: ")
+        print(f"Os dados que serão cadastrados são:\n")
+        for chave, valor in insercao.items(): # .items() cria uma view com a chave e o valor, permitindo unpacking
+            if valor is None or valor is []:
+                continue # Para evitar impressões de valores não registrados
+            if isinstance(valor, list):  # Checa se valor é uma lista
+                valor = ", ".join(valor) # Exibe uma lista como "valor1, valor2, valor3, ..., valorN"
+            print(f"{chave.capitalize()}: {valor}") # Capitaliza a chave e exibe o valor
+        confirmacao_insercao = input("\nEsses dados inseridos estão corretos(s/n)?: ")
         if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
             dados.append(insercao)
             print(f"Dados adicionados com sucesso. "
