@@ -185,8 +185,7 @@ def inserir_dados():
         confirmacao_insercao = input("\nEsses dados inseridos estão corretos(s/n)?: ")
         if confirmacao_insercao in ("s", "y"): # or não é aplicável - criaria um truthy
             dados.append(insercao)
-            print(f"Dados adicionados com sucesso. "
-                  f"O livro {insercao['autor']} - {insercao['nome']} foi inserido com sucesso.\n")
+            print(f"O livro {insercao['autor']} - {insercao['nome']} foi inserido com sucesso.\n")
             criar_snapshot(dados, snapshots)
             print(mensagem_salvar)
             break
