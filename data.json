@@ -2,437 +2,437 @@
   {
     "nome": "1984",
     "autor": "George Orwell",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "distopia",
       "ficção científica",
       "literatura inglesa",
       "política"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Duna",
     "autor": "Frank Herbert",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "literatura",
       "ficção científica",
       "política"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "O Alquimista",
     "autor": "Paulo Coelho",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "literatura",
       "filosofia",
       "espiritualidade"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "A Bruxa de Portobello",
     "autor": "Paulo Coelho",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "literatura",
       "espiritualidade"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Sobre a Brevidade da Vida",
     "autor": "Sêneca",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "estoicismo",
       "filosofia",
       "clássico"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Admirável Mundo Novo",
     "autor": "Aldous Huxley",
-    "inicio": null,
-    "fim": null,
-    "interrompido": "2026-07-10",
-    "retornado": null,
     "tags": [
       "distopia",
       "literatura",
       "ficção científica"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": "2026-07-10",
+    "retornado": null
   },
   {
     "nome": "A Torre",
     "autor": "Daniel O'Malley",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "ficção científica",
       "fantasia",
       "espionagem"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "A Adaga de Epiteto",
     "autor": "Epiteto",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "filosofia",
       "estoicismo",
       "clássico"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Admirável Mundo Novo",
     "autor": "Aldous Huxley",
-    "inicio": "2026-04-30",
-    "fim": null,
-    "interrompido": "2026-07-10",
-    "retornado": null,
     "tags": [
       "distopia",
       "ficção científica",
       "literatura",
       "literatura inglesa"
-    ]
+    ],
+    "inicio": "2026-04-30",
+    "fim": null,
+    "interrompido": "2026-07-10",
+    "retornado": null
   },
   {
     "nome": "Agostinho Através Dos Tempos",
     "autor": "Allan D. Fitzgerald",
-    "inicio": null,
-    "fim": null,
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "filosofia",
       "teologia",
       "religião"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Anti Frágil",
     "autor": "Nassim Taleb",
-    "inicio": null,
-    "fim": null,
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "filosofia",
       "risco",
       "economia"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "A Arte da Guera",
     "autor": "Nicolau Maquiavel",
-    "inicio": null,
-    "fim": null,
-    "interrompido": "2026-07-10",
-    "retornado": null,
     "tags": [
       "filosofia",
       "politica",
       "militar"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": "2026-07-10",
+    "retornado": null
   },
   {
     "nome": "Assim Falava Zaratustra",
     "autor": "Friedrich Nietzsche",
-    "inicio": null,
-    "fim": null,
-    "interrompido": "2026-07-10",
-    "retornado": null,
     "tags": [
       "filosofia",
       "clássico"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": "2026-07-10",
+    "retornado": null
   },
   {
     "nome": "Uma Breve História do Tempo",
     "autor": "Stephen Hawking",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "física",
       "cosmologia"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Buracos Negros",
     "autor": "Stephen Hawking",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "física",
       "cosmologia"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Contos Novos",
     "autor": "Mário de Andrade",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "literatura",
       "literatura brasileira",
       "modernismo",
       "contos"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Harry Potter e a Pedra Filosofal",
     "autor": "J. K. Rowling",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "literatura",
       "fantasia"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "O Homem e Seus Símbolos",
     "autor": "Carl Gustav Jung",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "psicologia",
       "psicanálise"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Os Homens Explicam Tudo Para Mim",
     "autor": "Rebecca Solnit",
-    "inicio": null,
-    "fim": null,
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "feminismo",
       "sociologia"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Arsène Lupin, Ladrão de Casaca",
     "autor": "Maurice Leblanc",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "literatura",
       "clássico"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Mãos à Obra: Aprendizado de Máquina com Seikit-Learn, Keras & TensorFlow",
     "autor": "Aurélien Géron",
-    "inicio": null,
-    "fim": null,
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "ml",
       "python",
       "ciências da computação"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Marília de Dirceu",
     "autor": "Tomás Antônio Gonzaga",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "literatura brasileira",
       "arcadismo",
       "poesia",
       "inconfidência mineira"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "A Metamorfose",
     "autor": "Franz Kafka",
-    "inicio": null,
-    "fim": null,
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "filosofia",
       "clássico"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Missão Silverfin",
     "autor": "Charlie Higson",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "espionagem",
       "aventura"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Moby Dick",
     "autor": "Herman Melville",
-    "inicio": null,
-    "fim": null,
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "literatura",
       "clássico",
       "aventura"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Mundo em Caos",
     "autor": "Patrick Ness",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "ficção científica",
       "distopia"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Pensando em Apostas",
     "autor": "Annie Duke",
-    "inicio": null,
-    "fim": null,
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "decisão",
       "probabilidade",
       "raciocínio"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Pensando em Sistemas",
     "autor": "Donella Meadows",
-    "inicio": null,
-    "fim": null,
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "sistemas",
       "complexidade",
       "design thinking"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "O Pequeno Príncipe",
     "autor": "Antoine de Saint-Exupéry",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "literatura",
       "clássico",
       "filosofia"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "O Programador Pragmático",
     "autor": "Andrew Hunt & David Thomas",
-    "inicio": null,
-    "fim": null,
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "programação",
       "engenharia de software",
       "tecnologia"
-    ]
+    ],
+    "inicio": null,
+    "fim": null,
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Quincas Borba",
     "autor": "Machado de Assis",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "literatura",
       "literatura brasileira",
       "clássico",
       "filosofia"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Rápido e Devagar",
     "autor": "Daniel Kahneman",
-    "inicio": "2026-07-10",
-    "fim": null,
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "psicologia",
       "economia comportamental",
       "probabilidade"
-    ]
+    ],
+    "inicio": "2026-07-10",
+    "fim": null,
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Reflexões",
     "autor": "Marco Aurélio",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "filosofia",
       "estoicismo",
       "clássico"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   },
   {
     "nome": "Sapiens",
     "autor": "Yuval Noah Harari",
-    "inicio": null,
-    "fim": "2026-07-10",
-    "interrompido": null,
-    "retornado": null,
     "tags": [
       "história",
       "antropologia",
       "evolução"
-    ]
+    ],
+    "inicio": null,
+    "fim": "2026-07-10",
+    "interrompido": null,
+    "retornado": null
   }
 ]

@@ -138,6 +138,14 @@ def inserir_dados():
         if lido in ("s", "y"): # or não é aplicável - criaria um truthy
             nome = input("Insira o nome do livro: ")
             autor = input("Insira o autor do livro: ")
+            # Inputs de tags individuais sequencialmente - procurar uma forma de inserir diversas
+            tags = []
+            print("Insira uma tag por vez")
+            while True:
+                tag = input("Insira uma tag (Enter para sair): ")
+                if tag == "":
+                    break
+                tags.append(tag) # Adiciona uma tag por vez na lista
             print("Cadastre as datas de leitura em formato ISO (AAAA-MM-DD). "
                   "Pressione Enter para pular qualquer etapa.")
             inicio = inserir_data(input("Insira quando iniciou a leitura do livro: "))
@@ -148,29 +156,21 @@ def inserir_dados():
         elif lido == "n":
             nome = input("Insira o nome do livro: ")
             autor = input("Insira o autor do livro: ")
+            tags = []
             inicio = fim = interrompido = retornado = None
             break
         else: # Cobre o caso de respostas vazias; como em um enter acidental
             print("Resposta inválida.")
 
-    # Inputs de tags individuais sequencialmente - procurar uma forma de inserir diversas
-    tags = []
-    print("Insira uma tag por vez")
-    while True:
-        tag = input("Insira uma tag (Enter para sair): ")
-        if tag == "": # Não entendi por que utilizar 'None' não funcionou aqui - pesquisar
-            break
-        tags.append(tag)
-
     # Preparando inserção de dados
     insercao = {
         "nome": nome,
         "autor": autor,
+        "tags": tags,
         "inicio": para_json(inicio),
         "fim": para_json(fim),
         "interrompido": para_json(interrompido),
-        "retornado": para_json(retornado),
-        "tags": tags
+        "retornado": para_json(retornado)
     }
 
     # Confirmando se os dados estão corretos diretamente com o usuário e os inserido caso estejam
